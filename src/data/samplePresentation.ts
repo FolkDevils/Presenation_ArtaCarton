@@ -65,6 +65,14 @@ export const samplePresentation: PresentationConfig = {
     },
     {
       id: '8',
+      type: 'model',
+      content: {
+        header: '',
+        texturePath: '/caseTexture_07.png'
+      },
+    },
+    {
+      id: '9',
       type: 'cover',
       content: {
         header: 'Thank You.',
