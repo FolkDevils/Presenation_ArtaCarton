@@ -3,7 +3,7 @@
 import React from 'react';
 import Image from 'next/image';
 import { SlideContent, ImageContent } from '../../../types/slides';
-import { defaultTheme, getGradientStyle } from '../../../utils/theme';
+import { defaultTheme } from '../../../utils/theme';
 
 interface TextImageSlideProps {
   content: SlideContent;

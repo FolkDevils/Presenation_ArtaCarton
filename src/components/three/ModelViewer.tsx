@@ -17,8 +17,6 @@ export default function ModelViewer({ texturePath }: ModelViewerProps) {
   const rendererRef = useRef<THREE.WebGLRenderer | null>(null);
   const modelRef = useRef<THREE.Group | null>(null);
   const controlsRef = useRef<OrbitControls | null>(null);
-  const mixerRef = useRef<THREE.AnimationMixer | null>(null);
-  const clockRef = useRef<THREE.Clock>(new THREE.Clock());
   const [isLoading, setIsLoading] = React.useState(true);
   const [loadProgress, setLoadProgress] = React.useState(0);
   const [isFolded, setIsFolded] = React.useState(false);
@@ -279,6 +277,9 @@ export default function ModelViewer({ texturePath }: ModelViewerProps) {
       cancelAnimationFrame(animationFrameId);
       controls.dispose();
 
+      // Store ref value
+      const container = containerRef.current;
+
       // Cleanup scene
       if (modelRef.current) {
         modelRef.current.traverse((child) => {
@@ -298,8 +299,8 @@ export default function ModelViewer({ texturePath }: ModelViewerProps) {
       }
 
       // Cleanup renderer
-      if (containerRef.current && rendererRef.current) {
-        containerRef.current.removeChild(renderer.domElement);
+      if (container && rendererRef.current) {
+        container.removeChild(renderer.domElement);
       }
       renderer.dispose();
     };

@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { SlideContent } from '../../../types/slides';
-import { defaultTheme, getGradientStyle } from '../../../utils/theme';
+import { defaultTheme } from '../../../utils/theme';
 
 interface TwoColumnTextSlideProps {
   content: SlideContent;

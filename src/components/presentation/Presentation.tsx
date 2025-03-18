@@ -14,6 +14,23 @@ import { generatePDF } from '../../utils/pdfGenerator';
 export const Presentation: React.FC = () => {
   const { currentSlide, nextSlide, previousSlide, currentSlideIndex, presentationTitle, totalSlides } = usePresentationContext();
 
+  const handleGeneratePDF = async () => {
+    try {
+      const slides = document.querySelectorAll('.slide-content');
+      if (slides.length === 0) {
+        console.error('No slides found');
+        return;
+      }
+
+      await generatePDF({
+        title: presentationTitle,
+        slides: Array.from(slides) as HTMLElement[]
+      });
+    } catch (error) {
+      console.error('Error generating PDF:', error);
+    }
+  };
+
   useEffect(() => {
     const handleKeyPress = (event: KeyboardEvent) => {
       // Handle PDF generation (Command + Shift + P)
@@ -37,43 +54,7 @@ export const Presentation: React.FC = () => {
 
     window.addEventListener('keydown', handleKeyPress);
     return () => window.removeEventListener('keydown', handleKeyPress);
-  }, [nextSlide, previousSlide]);
-
-  const handleGeneratePDF = async () => {
-    if (!currentSlide) return;
-
-    // Create a container for all slides
-    const container = document.createElement('div');
-    container.style.position = 'fixed';
-    container.style.top = '0';
-    container.style.left = '0';
-    container.style.width = '100%';
-    container.style.height = '100%';
-    container.style.zIndex = '-1000';
-    container.style.opacity = '0';
-    document.body.appendChild(container);
-
-    try {
-      // Get all slides from the context
-      const slideElements = Array.from({ length: totalSlides }, (_, i) => {
-        const slideDiv = document.createElement('div');
-        slideDiv.className = 'slide-content';
-        slideDiv.setAttribute('data-slide-index', i.toString());
-        container.appendChild(slideDiv);
-        return slideDiv;
-      });
-
-      await generatePDF({
-        title: presentationTitle,
-        slides: slideElements
-      });
-    } catch (error) {
-      console.error('Error generating PDF:', error);
-    } finally {
-      // Clean up
-      document.body.removeChild(container);
-    }
-  };
+  }, [nextSlide, previousSlide, handleGeneratePDF]);
 
   const renderSlide = (slide: Slide) => {
     const slideContent = (

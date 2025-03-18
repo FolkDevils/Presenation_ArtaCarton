@@ -2,126 +2,108 @@
 
 import React, { useRef, useEffect, useState } from 'react';
 import { gsap } from 'gsap';
+import Image from 'next/image';
 
-interface BgFlowerAnimationProps {
-  animateFlowers?: boolean;
-}
-
-const BgFlowerAnimation: React.FC<BgFlowerAnimationProps> = ({ animateFlowers = true }) => {
+export const BgFlowerAnimation = () => {
+  const flowersRef = useRef<(HTMLDivElement | null)[]>([]);
   const containerRef = useRef<HTMLDivElement>(null);
-  const flowersRef = useRef<(HTMLImageElement | null)[]>([]);
   const [isLoaded, setIsLoaded] = useState(false);
 
+  const flowerImages = [
+    '/flower_01.png',
+    '/flower_02.png',
+    '/flower_03.png'
+  ];
+
   useEffect(() => {
-    if (!animateFlowers) {
-      flowersRef.current.forEach((flower) => {
-        if (flower) {
-          gsap.killTweensOf(flower);
-        }
-      });
-      return;
-    }
+    const animateFlowers = () => {
+      flowersRef.current.forEach((flower, index) => {
+        if (!flower) return;
 
-    const flowers = flowersRef.current.filter((flower): flower is HTMLImageElement => flower !== null);
-    const viewportHeight = window.innerHeight;
-    const viewportWidth = window.innerWidth;
-    const totalHeight = viewportHeight + 100;
+        const startX = Math.random() * window.innerWidth;
+        const endX = startX + (Math.random() - 0.5) * 200;
+        const duration = 3 + Math.random() * 2;
+        const delay = Math.random() * 2;
 
-    const resetFlower = (flower: HTMLImageElement) => {
-      gsap.set(flower, {
-        y: -80,
-        rotation: gsap.utils.random(-360, 360),
-        opacity: 0,
-      });
-
-      gsap.to(flower, {
-        opacity: gsap.utils.random(0.5, 1),
-        duration: 1,
-        ease: "power1.in"
-      });
-
-      animateFall(flower);
-    };
-
-    const animateFall = (flower: HTMLImageElement) => {
-      const duration = gsap.utils.random(10, 15);
-      const swayAmount = gsap.utils.random(30, 100);
-      const swayDuration = gsap.utils.random(2, 5);
-
-      gsap.to(flower, {
-        y: totalHeight,
-        duration: duration,
-        ease: "none",
-        onComplete: () => resetFlower(flower),
-      });
-
-      gsap.to(flower, {
-        x: `+=${swayAmount}`,
-        rotation: `+=${gsap.utils.random(180, 360)}`,
-        duration: swayDuration,
-        ease: "sine.inOut",
-        yoyo: true,
-        repeat: -1,
-      });
-    };
-
-    const animateFlowersFunc = () => {
-      flowers.forEach((flower) => {
         gsap.set(flower, {
-          x: gsap.utils.random(0, viewportWidth + 0),
-          y: gsap.utils.random(-500, totalHeight + 200),
-          rotation: gsap.utils.random(-360, 360),
-          scale: gsap.utils.random(0.7, 1),
-          opacity: gsap.utils.random(0.3, 1),
+          x: startX,
+          y: -100,
+          rotation: 0,
+          scale: 0.5 + Math.random() * 0.5,
+          opacity: 0
         });
 
-        animateFall(flower);
-      });
-
-      setIsLoaded(true);
-    };
-
-    const imagePromises = flowers.map((flower) => {
-      return new Promise<void>((resolve) => {
-        const img = new Image();
-        img.onload = () => resolve();
-        img.src = flower.src;
-      });
-    });
-
-    Promise.all(imagePromises).then(animateFlowersFunc);
-
-    return () => {
-      flowers.forEach((flower) => {
-        gsap.killTweensOf(flower);
+        gsap.to(flower, {
+          duration,
+          y: window.innerHeight + 100,
+          x: endX,
+          rotation: Math.random() * 360,
+          opacity: 1,
+          ease: "none",
+          delay,
+          onComplete: () => {
+            animateFlower(flower);
+          }
+        });
       });
     };
-  }, [animateFlowers]);
 
-  const flowerImages = Array(30).fill(null).map((_, index) => {
-    const flowerNumber = (index % 3) + 1;
-    return `/flower_0${flowerNumber}.png`;
-  });
+    const animateFlower = (flower: HTMLDivElement) => {
+      const startX = Math.random() * window.innerWidth;
+      const endX = startX + (Math.random() - 0.5) * 200;
+      const duration = 3 + Math.random() * 2;
+
+      gsap.set(flower, {
+        x: startX,
+        y: -100,
+        rotation: 0,
+        scale: 0.5 + Math.random() * 0.5,
+        opacity: 0
+      });
+
+      gsap.to(flower, {
+        duration,
+        y: window.innerHeight + 100,
+        x: endX,
+        rotation: Math.random() * 360,
+        opacity: 1,
+        ease: "none",
+        onComplete: () => {
+          animateFlower(flower);
+        }
+      });
+    };
+
+    setIsLoaded(true);
+    animateFlowers();
+  }, []);
 
   return (
     <div 
       ref={containerRef}
-      className="fixed inset-0 w-full h-full overflow-hidden pointer-events-none"
+      className="fixed inset-0 w-screen h-screen overflow-hidden pointer-events-none"
     >
-      {flowerImages.map((src, index) => (
-        <img
-          key={index}
-          ref={(el) => {
-            flowersRef.current[index] = el;
-          }}
-          src={src}
-          alt={`Falling flower ${index + 1}`}
-          className={`absolute w-12 h-12 object-contain ${isLoaded ? 'opacity-100' : 'opacity-0'}`}
-          style={{ transition: 'opacity 0.5s ease-in' }}
-        />
-      ))}
+      <div className="relative w-full h-full">
+        {flowerImages.map((src, index) => (
+          <div
+            key={index}
+            ref={(el) => {
+              if (el) {
+                flowersRef.current[index] = el;
+              }
+            }}
+            className={`absolute opacity-0 ${isLoaded ? 'opacity-100' : 'opacity-0'}`}
+          >
+            <Image
+              src={src}
+              alt={`Flower ${index + 1}`}
+              width={200}
+              height={200}
+              priority
+            />
+          </div>
+        ))}
+      </div>
     </div>
   );
-};
-
-export default BgFlowerAnimation; 
+}; 
