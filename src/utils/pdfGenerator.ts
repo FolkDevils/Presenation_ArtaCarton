@@ -2,8 +2,12 @@
 
 import html2canvas from 'html2canvas';
 import jsPDF from 'jspdf';
-import { PresentationConfig } from '../types/slides';
 import { defaultTheme } from './theme';
+
+interface PDFGeneratorOptions {
+  title: string;
+  slides: HTMLElement[];
+}
 
 const SLIDE_WIDTH = 1920;
 const SLIDE_HEIGHT = 1080;

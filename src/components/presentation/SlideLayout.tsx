@@ -4,7 +4,6 @@ import React, { useState } from 'react';
 import { usePresentationContext } from '../../context/PresentationContext';
 import { generatePDF } from '../../utils/pdfGenerator';
 import { defaultTheme } from '../../utils/theme';
-import Image from 'next/image';
 
 interface SlideLayoutProps {
   children: React.ReactNode;

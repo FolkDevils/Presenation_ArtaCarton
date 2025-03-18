@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef } from 'react';
 import gsap from 'gsap';
 
 const Preloader = ({ progress, isLoading }) => {
@@ -6,18 +6,6 @@ const Preloader = ({ progress, isLoading }) => {
   const progressBarRef = useRef(null);
   const textRef = useRef(null);
   const letterRefs = useRef([]);
-  const [dots, setDots] = useState('');
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setDots(prev => {
-        if (prev.length >= 3) return '';
-        return prev + '.';
-      });
-    }, 500);
-
-    return () => clearInterval(interval);
-  }, []);
 
   useEffect(() => {
     // Split the "Loading" text into individual spans
@@ -25,7 +13,7 @@ const Preloader = ({ progress, isLoading }) => {
       const text = "LOADING";
       textRef.current.innerHTML = text
         .split('')
-        .map((letter, i) => `<span class="inline-block loading-letter">${letter}</span>`)
+        .map((letter) => `<span class="inline-block loading-letter">${letter}</span>`)
         .join('');
       
       // Store refs to each letter

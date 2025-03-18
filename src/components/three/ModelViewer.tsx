@@ -277,12 +277,14 @@ export default function ModelViewer({ texturePath }: ModelViewerProps) {
       cancelAnimationFrame(animationFrameId);
       controls.dispose();
 
-      // Store ref value
+      // Store ref values
       const container = containerRef.current;
+      const model = modelRef.current;
+      const currentRenderer = rendererRef.current;
 
       // Cleanup scene
-      if (modelRef.current) {
-        modelRef.current.traverse((child) => {
+      if (model) {
+        model.traverse((child) => {
           if (child instanceof THREE.Mesh) {
             child.geometry.dispose();
             if (child.material instanceof THREE.Material) {
@@ -290,7 +292,7 @@ export default function ModelViewer({ texturePath }: ModelViewerProps) {
             }
           }
         });
-        scene.remove(modelRef.current);
+        scene.remove(model);
       }
 
       // Dispose of texture
@@ -299,10 +301,12 @@ export default function ModelViewer({ texturePath }: ModelViewerProps) {
       }
 
       // Cleanup renderer
-      if (container && rendererRef.current) {
-        container.removeChild(renderer.domElement);
+      if (container && currentRenderer) {
+        container.removeChild(currentRenderer.domElement);
       }
-      renderer.dispose();
+      if (currentRenderer) {
+        currentRenderer.dispose();
+      }
     };
   }, [texturePath]);
 

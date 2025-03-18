@@ -17,7 +17,7 @@ export const BgFlowerAnimation = () => {
 
   useEffect(() => {
     const animateFlowers = () => {
-      flowersRef.current.forEach((flower, index) => {
+      flowersRef.current.forEach((flower) => {
         if (!flower) return;
 
         const startX = Math.random() * window.innerWidth;

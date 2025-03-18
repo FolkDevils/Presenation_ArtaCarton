@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useEffect } from 'react';
+import React, { useEffect, useCallback } from 'react';
 import { SlideLayout } from './SlideLayout';
 import { TextOnlySlide } from './slides/TextOnlySlide';
 import { TextImageSlide } from './slides/TextImageSlide';
@@ -14,7 +14,7 @@ import { generatePDF } from '../../utils/pdfGenerator';
 export const Presentation: React.FC = () => {
   const { currentSlide, nextSlide, previousSlide, currentSlideIndex, presentationTitle, totalSlides } = usePresentationContext();
 
-  const handleGeneratePDF = async () => {
+  const handleGeneratePDF = useCallback(async () => {
     try {
       const slides = document.querySelectorAll('.slide-content');
       if (slides.length === 0) {
@@ -29,7 +29,7 @@ export const Presentation: React.FC = () => {
     } catch (error) {
       console.error('Error generating PDF:', error);
     }
-  };
+  }, [presentationTitle]);
 
   useEffect(() => {
     const handleKeyPress = (event: KeyboardEvent) => {
