@@ -275,12 +275,17 @@ export default function ModelViewer({ texturePath }: ModelViewerProps) {
     return () => {
       window.removeEventListener("resize", handleResize);
       cancelAnimationFrame(animationFrameId);
-      controls.dispose();
 
-      // Store ref values
+      // Store all ref values at the start
       const container = containerRef.current;
       const model = modelRef.current;
       const currentRenderer = rendererRef.current;
+      const currentControls = controlsRef.current;
+
+      // Dispose controls if they exist
+      if (currentControls) {
+        currentControls.dispose();
+      }
 
       // Cleanup scene
       if (model) {

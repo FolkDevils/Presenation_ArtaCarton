@@ -4,9 +4,9 @@ import html2canvas from 'html2canvas';
 import jsPDF from 'jspdf';
 import { defaultTheme } from './theme';
 
-interface PDFGeneratorOptions {
+interface PDFGeneratorConfig {
   title: string;
-  slides: HTMLElement[];
+  slides: Element[];
 }
 
 const SLIDE_WIDTH = 1920;
@@ -149,7 +149,7 @@ const captureSlide = async (slideContent: Element, printContainer: HTMLElement, 
   return { canvas, index };
 };
 
-export const generatePDF = async (config: { title: string, slides: Element[] }) => {
+export const generatePDF = async (config: PDFGeneratorConfig) => {
   console.log('Initializing PDF generation...');
   
   const pdf = new jsPDF({

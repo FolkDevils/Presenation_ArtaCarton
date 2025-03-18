@@ -8,11 +8,17 @@ import { CoverSlide } from './slides/CoverSlide';
 import { ModelSlide } from './slides/ModelSlide';
 import { TwoColumnTextSlide } from './slides/TwoColumnTextSlide';
 import { usePresentationContext } from '../../context/PresentationContext';
-import { Slide, PresentationConfig } from '../../types/slides';
+import { Slide } from '../../types/slides';
 import { generatePDF } from '../../utils/pdfGenerator';
 
 export const Presentation: React.FC = () => {
-  const { currentSlide, nextSlide, previousSlide, currentSlideIndex, presentationTitle, totalSlides } = usePresentationContext();
+  const { 
+    currentSlide, 
+    nextSlide, 
+    previousSlide, 
+    currentSlideIndex, 
+    presentationTitle 
+  } = usePresentationContext();
 
   const handleGeneratePDF = useCallback(async () => {
     try {
