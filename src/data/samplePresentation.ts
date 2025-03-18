@@ -20,7 +20,7 @@ export const samplePresentation: PresentationConfig = {
       type: 'model',
       content: {
         header: '',
-        texturePath: '/caseTexture_01.png'
+        texturePath: '/caseTexture_origional.png'
       },
     },
     {
@@ -28,7 +28,7 @@ export const samplePresentation: PresentationConfig = {
       type: 'model',
       content: {
         header: '',
-        texturePath: '/caseTexture_02.png'
+        texturePath: '/caseTexture_01.png'
       },
     },
     {
@@ -36,7 +36,7 @@ export const samplePresentation: PresentationConfig = {
       type: 'model',
       content: {
         header: '',
-        texturePath: '/caseTexture_03.png'
+        texturePath: '/caseTexture_02.png'
       },
     },
     {
@@ -44,7 +44,7 @@ export const samplePresentation: PresentationConfig = {
       type: 'model',
       content: {
         header: '',
-        texturePath: '/caseTexture_04.png'
+        texturePath: '/caseTexture_03.png'
       },
     },
     {
@@ -52,7 +52,7 @@ export const samplePresentation: PresentationConfig = {
       type: 'model',
       content: {
         header: '',
-        texturePath: '/caseTexture_05.png'
+        texturePath: '/caseTexture_04.png'
       },
     },
     {
@@ -60,7 +60,7 @@ export const samplePresentation: PresentationConfig = {
       type: 'model',
       content: {
         header: '',
-        texturePath: '/caseTexture_06.png'
+        texturePath: '/caseTexture_05.png'
       },
     },
     {
@@ -68,11 +68,36 @@ export const samplePresentation: PresentationConfig = {
       type: 'model',
       content: {
         header: '',
-        texturePath: '/caseTexture_07.png'
+        texturePath: '/caseTexture_06.png'
       },
     },
     {
       id: '9',
+      type: 'model',
+      content: {
+        header: '',
+        texturePath: '/caseTexture_07.png'
+      },
+    },
+    {
+      id: '10',
+      type: 'model',
+      content: {
+        header: '',
+        texturePath: '/caseTexture_08.png'
+      },
+    },
+    {
+      id: '11',
+      type: 'model',
+      content: {
+        header: '',
+        texturePath: '/caseTexture_09.png'
+      },
+    },
+    
+    {
+      id: '12',
       type: 'cover',
       content: {
         header: 'Thank You.',
