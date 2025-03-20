@@ -83,6 +83,14 @@ export const samplePresentation: PresentationConfig = {
       },
     },
     {
+      id: 'new 08',
+      type: 'model',
+      content: {
+        header: '',
+        texturePath: '/cartoneDesigns_new08.png'
+      },
+    },
+    {
       id: 'archive',
       type: 'text-only',
       content: {
