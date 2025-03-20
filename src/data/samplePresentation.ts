@@ -10,7 +10,7 @@ export const samplePresentation: PresentationConfig = {
       content: {
         eyebrow: '',
         header: '',
-        body: 'Case Designs Round 01',
+        body: 'Case Designs Round 02',
         textAlignment: 'center',
         verticalAlignment: 'center',
       },
