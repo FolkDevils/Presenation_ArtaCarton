@@ -97,7 +97,7 @@ export default function ModelViewer({ texturePath }: ModelViewerProps) {
     controlsRef.current = controls;
 
     // Lighting setup
-    const ambientLight = new THREE.AmbientLight(0xffffff, 1.2);
+    const ambientLight = new THREE.AmbientLight(0xffffff, 1.5);
     scene.add(ambientLight);
 
     const directionalLight = new THREE.DirectionalLight(0xffffff, 1);

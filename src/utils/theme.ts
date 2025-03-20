@@ -37,8 +37,8 @@ export const defaultTheme: ThemeConfig = {
     secondary: '#000000',
     text: {
       primary: '#ffffff',
-      secondary: '#d8bb53',
-      accent: '#d8bb53'
+      secondary: '#dcb758',
+      accent: '#dcb758'
     },
     background: '#000000'
   },

@@ -16,6 +16,84 @@ export const samplePresentation: PresentationConfig = {
       },
     },
     {
+      id: 'round-two',
+      type: 'text-only',
+      content: {
+        header: 'Round two',
+        textAlignment: 'center',
+        verticalAlignment: 'center',
+        customFont: abrilFatface.className,
+        customTextColor: '#dcb758'
+      },
+    },
+    {
+      id: 'new 01',
+      type: 'model',
+      content: {
+        header: '',
+        texturePath: '/cartoneDesigns_new01.png'
+      },
+    },
+    {
+      id: 'new 02',
+      type: 'model',
+      content: {
+        header: '',
+        texturePath: '/cartoneDesigns_new02.png'
+      },
+    },
+    {
+      id: 'new 03',
+      type: 'model',
+      content: {
+        header: '',
+        texturePath: '/cartoneDesigns_new03.png'
+      },
+    },
+    {
+      id: 'new 04',
+      type: 'model',
+      content: {
+        header: '',
+        texturePath: '/cartoneDesigns_new04.png'
+      },
+    },
+    {
+      id: 'new 05',
+      type: 'model',
+      content: {
+        header: '',
+        texturePath: '/cartoneDesigns_new05.png'
+      },
+    },
+    {
+      id: 'new 06',
+      type: 'model',
+      content: {
+        header: '',
+        texturePath: '/cartoneDesigns_new06.png'
+      },
+    },
+    {
+      id: 'new 07',
+      type: 'model',
+      content: {
+        header: '',
+        texturePath: '/cartoneDesigns_new07.png'
+      },
+    },
+    {
+      id: 'archive',
+      type: 'text-only',
+      content: {
+        header: 'Archive',
+        textAlignment: 'center',
+        verticalAlignment: 'center',
+        customFont: abrilFatface.className,
+        customTextColor: '#dcb758'
+      },
+    },
+    {
       id: '2',
       type: 'model',
       content: {
@@ -95,7 +173,6 @@ export const samplePresentation: PresentationConfig = {
         texturePath: '/caseTexture_09.png'
       },
     },
-
     {
       id: '12',
       type: 'model',
@@ -104,9 +181,7 @@ export const samplePresentation: PresentationConfig = {
         texturePath: '/caseTexture_10.png'
       },
     },
-    
-
-        {
+    {
       id: '13',
       type: 'model',
       content: {
@@ -114,8 +189,6 @@ export const samplePresentation: PresentationConfig = {
         texturePath: '/caseTexture_11.png'
       },
     },
-    
-    
     {
       id: '14',
       type: 'cover',
