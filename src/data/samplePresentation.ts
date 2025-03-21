@@ -35,14 +35,6 @@ export const samplePresentation: PresentationConfig = {
       },
     },
     {
-      id: 'new 02',
-      type: 'model',
-      content: {
-        header: '',
-        texturePath: '/cartoneDesigns_final_v2.png'
-      },
-    },
-    {
       id: 'round-two',
       type: 'text-only',
       content: {
