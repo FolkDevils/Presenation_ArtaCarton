@@ -10,9 +10,28 @@ export const samplePresentation: PresentationConfig = {
       content: {
         eyebrow: '',
         header: '',
-        body: 'Case Designs Round 02',
+        body: 'Case Designs',
         textAlignment: 'center',
         verticalAlignment: 'center',
+      },
+    },
+    {
+      id: 'selected',
+      type: 'text-only',
+      content: {
+        header: 'Selected',
+        textAlignment: 'center',
+        verticalAlignment: 'center',
+        customFont: abrilFatface.className,
+        customTextColor: '#dcb758'
+      },
+    },
+    {
+      id: 'new 01',
+      type: 'model',
+      content: {
+        header: '',
+        texturePath: '/cartoneDesigns_final.png'
       },
     },
     {
